@@ -1,0 +1,12 @@
+---
+- hosts: all
+  vars:
+    url: "https://tower.pichuang.com.tw"
+  tasks:
+    - name: Check web site {{ url }} from localhost
+      uri:
+        url: "{{ url }}"
+        return_content: yes
+        validate_certs: no
+      register: current_webpage
+      failed_when: current_webpage.status != 200
